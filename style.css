@@ -4,7 +4,7 @@ body {
 }
 
 h2 {
-    color: #333;
+    color: #c01111;
 }
 
 form {
@@ -42,5 +42,5 @@ input[type="submit"] {
 }
 
 input[type="submit"]:hover {
-    background-color: #45a049;
+    background-color: #4556a0;
 }
