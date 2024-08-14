@@ -4,11 +4,15 @@ document.getElementById('validationForm').addEventListener('submit', function(ev
 
     // Obtém os valores dos campos do formulário
     const name = document.getElementById('name').value.trim();
+    const email = document.getElementById('email').value.trim();
     const password = document.getElementById('password').value.trim();
+    const message = document.getElementById('message').value.trim();
 
     // Obtém os elementos de erro
     const nameError = document.getElementById('nameError');
+    const emailError = document.getElementById('emailError');
     const passwordError = document.getElementById('passwordError');
+    const messageError = document.getElementById('messageError');
 
     // Inicializa um indicador de erro
     let hasErrors = false;
@@ -25,6 +29,18 @@ document.getElementById('validationForm').addEventListener('submit', function(ev
         nameError.textContent = '';
     }
 
+    // Valida o e-mail
+    const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (email === '') {
+        emailError.textContent = 'E-mail é obrigatório.';
+        hasErrors = true;
+    } else if (!emailPattern.test(email)) {
+        emailError.textContent = 'E-mail inválido.';
+        hasErrors = true;
+    } else {
+        emailError.textContent = '';
+    }
+
     // Valida a senha
     if (password === '') {
         passwordError.textContent = 'Senha é obrigatória.';
@@ -34,6 +50,14 @@ document.getElementById('validationForm').addEventListener('submit', function(ev
         hasErrors = true;
     } else {
         passwordError.textContent = '';
+    }
+
+    // Valida a mensagem
+    if (message === '') {
+        messageError.textContent = 'Mensagem é obrigatória.';
+        hasErrors = true;
+    } else {
+        messageError.textContent = '';
     }
 
     // Se não houver erros, envia o formulário (pode ser substituído por lógica de envio AJAX)
