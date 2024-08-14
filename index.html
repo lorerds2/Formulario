@@ -1,37 +1,32 @@
 <!DOCTYPE html>
-<html lang="pt-BR">
+<html lang="pt">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Formulário de Validação</title>
-    <style>
-        .error {
-            color: red;
-            font-size: 0.875em;
-        }
-    </style>
+    <meta name="viewport" content="widtd=, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <title>perfil da lorena</title>
 </head>
-<body>
-    <form id="validationForm">
+ <h1>Formulário l</h1>
+    <form id="myForm">
         <label for="name">Nome:</label>
-        <input type="text" id="name" name="name">
-        <span class="error" id="nameError"></span><br><br>
+        <input type="text" id="name" name="name" required>
+        <span class="error" id="nameError"></span>
+        <br>
 
         <label for="email">E-mail:</label>
-        <input type="email" id="email" name="email">
-        <span class="error" id="emailError"></span><br><br>
+        <input type="email" id="email" name="email" required>
+        <span class="error" id="emailError"></span>
+        <br>
 
         <label for="password">Senha:</label>
-        <input type="password" id="password" name="password">
-        <span class="error" id="passwordError"></span><br><br>
+        <input type="password" id="password" name="password" required minlength="6">
+        <span class="error" id="passwordError"></span>
+        <br>
 
-        <label for="message">Mensagem:</label>
-        <textarea id="message" name="message"></textarea>
-        <span class="error" id="messageError"></span><br><br>
-
-        <button type="submit">Enviar</button>
+        <input type="submit" value="Enviar">
     </form>
 
-    <script src="form-validation.js"></script>
-</body>
+    <script src="script.js"></script>
+
 </html>
