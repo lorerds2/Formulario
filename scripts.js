@@ -1,45 +1,56 @@
-document.addEventListener('DOMContentLoaded', function() {
-    const form = document.getElementById('contactForm');
+document.addEventListener('DOMContentLoaded', () => {
+    const nameInput = document.getElementById('name');
+    const emailInput = document.getElementById('email');
+    const passwordInput = document.getElementById('password');
+    const nameError = document.getElementById('nameError');
+    const emailError = document.getElementById('emailError');
+    const passwordError = document.getElementById('passwordError');
 
-    form.addEventListener('submit', function(event) {
-        let valid = true;
-
-        // Nome
-        const nome = document.getElementById('nome').value;
-        const nomeError = document.getElementById('nomeError');
-        if (nome.trim() === '') {
-            nomeError.textContent = 'Nome é obrigatório.';
-            valid = false;
+    // Função de validação do nome
+    function validateName() {
+        const nameValue = nameInput.value.trim();
+        if (nameValue === '') {
+            nameError.textContent = 'O nome é obrigatório.';
+        } else if (/\d/.test(nameValue)) {
+            nameError.textContent = 'O nome não pode conter números.';
         } else {
-            nomeError.textContent = '';
+            nameError.textContent = '';
         }
+    }
 
-        // Email
-        const email = document.getElementById('email').value;
-        const emailError = document.getElementById('emailError');
+    // Função de validação do e-mail
+    function validateEmail() {
         const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-        if (email.trim() === '') {
-            emailError.textContent = 'Email é obrigatório.';
-            valid = false;
-        } else if (!emailPattern.test(email)) {
-            emailError.textContent = 'Email inválido.';
-            valid = false;
+        if (!emailPattern.test(emailInput.value)) {
+            emailError.textContent = 'E-mail inválido.';
         } else {
             emailError.textContent = '';
         }
+    }
 
-        // Mensagem
-        const mensagem = document.getElementById('mensagem').value;
-        const mensagemError = document.getElementById('mensagemError');
-        if (mensagem.trim() === '') {
-            mensagemError.textContent = 'Mensagem é obrigatória.';
-            valid = false;
+    // Função de validação da senha
+    function validatePassword() {
+        if (passwordInput.value.length < 6) {
+            passwordError.textContent = 'A senha deve ter pelo menos 6 caracteres.';
         } else {
-            mensagemError.textContent = '';
+            passwordError.textContent = '';
         }
+    }
 
-        if (!valid) {
-            event.preventDefault(); // Impede o envio do formulário se a validação falhar
+    // Adiciona os ouvintes de eventos para validação em tempo real
+    nameInput.addEventListener('input', validateName);
+    emailInput.addEventListener('input', validateEmail);
+    passwordInput.addEventListener('input', validatePassword);
+
+    // Valida o formulário ao submeter
+    document.getElementById('myForm').addEventListener('submit', (event) => {
+        validateName();
+        validateEmail();
+        validatePassword();
+
+        // Evita o envio do formulário se houver erros
+        if (nameError.textContent || emailError.textContent || passwordError.textContent) {
+            event.preventDefault();
         }
     });
 });
